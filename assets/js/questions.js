@@ -1,5 +1,15 @@
-// list the 5 quiz questions by defining objects key-value pairs
+// list the 6 quiz questions by defining objects key-value pairs
 var quizQuestions = [
+    {
+        question: "What is JavaScript?",
+        answers: [
+            "A. JavaScript is an assembly language used to make the website interactive.",
+            "B. JavaScript is a scripting language used to make the website interactive.",
+            "C. JavaScript is a compiled language used to make the website interactive.",
+            "D. None of the above"
+        ],
+        correctAnswerIndex: 1 
+    }
     {
         question: "Which of the following keywords is used to define a variable in Javascript?",
         answers: [
@@ -41,12 +51,12 @@ var quizQuestions = [
         correctAnswerIndex: 1 
     }
     {
-        question: "What is the process of finding errors and fixing them within a program.",
+        question: "How do we write a comment in javascript?",
         answers: [
-            "A. Compiling",
-            "B. Executing",
-            "C. Scanning",
-            "D. Debugging"
+            "A. /* */",
+            "B. #",
+            "C. $$",
+            "D. //"
         ],
         correctAnswerIndex: 3 
     }
