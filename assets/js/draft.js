@@ -18,6 +18,9 @@ carousel.addEventListener("click", function () {
 var next = carousel.querySelector(".next");
 var prev = carousel.querySelector(".prev");
 
+var backEl = document.querySelector('#back');
+var clearEl = document.querySelector('#clear');
+
 function navigate(direction) {
     index = index + direction;
     if (index < 0) {
@@ -51,7 +54,13 @@ navigate(0);
 function showScores(event) {
     // Prevent default action
     event.preventDefault();
+    window.location.href = "highscores.html";
     console.log(event);
+
+    var li = document.createElement("li");
+    li.textContent = "Apples";
+    var listEl = document.querySelector("ol");
+    listEl.appendChild(li);
     var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
     submissionResponseEl.textContent = response;
 }
@@ -61,3 +70,41 @@ var submitEl = document.querySelector("#time");
 submitEl.addEventListener("click", showScores);
 
 
+
+// Create ordered list items
+var li1 = document.createElement("li");
+var li2 = document.createElement("li");
+var li3 = document.createElement("li");
+var li4 = document.createElement("li");
+
+// Add text for list items
+li1.textContent = "Apples 🍎 ";
+li2.textContent = "Pizza 🍕 ";
+li3.textContent = "Dumplings 🥟 ";
+li4.textContent = "Cupcakes 🧁 ";
+
+var listEl = document.querySelector("ol");
+
+// Append list items to ordered list element 
+listEl.appendChild(li1);
+listEl.appendChild(li2);
+listEl.appendChild(li3);
+listEl.appendChild(li4);
+
+if (alphabetNumericCharacters.includes(key)) {
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].textContent += event.key;
+    }
+}
+
+var clearEl = document.querySelector('#clear');
+clearEl.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    //clear the local storage
+    textAreaEl.value = '';
+
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].textContent = '';
+    }
+});
