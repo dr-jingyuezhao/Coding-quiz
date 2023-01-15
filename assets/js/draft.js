@@ -97,8 +97,8 @@ if (alphabetNumericCharacters.includes(key)) {
     }
 }
 
-var clearEl = document.querySelector('#clear');
-clearEl.addEventListener('click', function (event) {
+var clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', function (event) {
     event.preventDefault();
 
     //clear the local storage
@@ -106,5 +106,101 @@ clearEl.addEventListener('click', function (event) {
 
     for (var i = 0; i < elements.length; i++) {
         elements[i].textContent = '';
+    }
+});
+
+
+data - state="still"
+
+// Listen for any clicks within the img-container div
+imageContainer.addEventListener("click", function (event) {
+    var element = event.target;
+
+    // Check if the clicked element was an image
+    if (element.matches("img")) {
+        // Get the current value of the image's data-state attribute
+        var state = element.getAttribute("data-state");
+
+        if (state === "still") {
+            // Change the data-state attribute's value
+            // There are two different ways this attribute can be set
+            element.dataset.state = "animate";
+            element.setAttribute("data-state", "animate");
+
+            // Update the image's source to the string being stored in the data-animate attribute
+            element.setAttribute("src", element.dataset.animate);
+        } else {
+            // Change the attributes back to their non-animated values
+            element.dataset.state = "still";
+            element.setAttribute("src", element.dataset.still);
+        }
+    }
+});
+
+var container = document.querySelector(".container");
+
+container.addEventListener("click", function (event) {
+    var element = event.target;
+
+    if (element.matches(".box")) {
+        var state = element.getAttribute("data-state");
+
+        // Use an if statement to conditionally render the number on the card
+        if (state === "hidden") {
+            // If the card is clicked while the state is "hidden", we set .textContent to the number 
+            element.textContent = element.dataset.number;
+            // Using the dataset property, we change the state to visible because the user can now see the number
+            element.dataset.state = "visible";
+
+        } else {
+            // 'Hide' the number by setting .textContent to an empty string
+            element.textContent = "";
+            // Use .setAttribute() method
+            element.setAttribute("data-state", "hidden")
+
+        }
+    }
+
+});
+
+
+var score = localStorage.getItem("score");
+counter.textContent = count;
+
+localStorage.setItem("count", count);
+
+signUpButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // create user object from submission
+    var user = {
+        firstName: firstNameInput.value.trim(),
+        lastName: lastNameInput.value.trim(),
+        email: emailInput.value.trim(),
+        password: passwordInput.value.trim()
+    };
+
+    // validate the fields
+    if (user.firstName === "") {
+        displayMessage("error", "First name cannot be blank");
+    } else if (user.lastName === "") {
+        displayMessage("error", "Last name cannot be blank");
+    } else if (user.email === "") {
+        displayMessage("error", "Email cannot be blank");
+    } else if (user.password === "") {
+        displayMessage("error", "Password cannot be blank");
+    } else {
+        displayMessage("success", "Registered successfully");
+
+        // set new submission
+        console.log(user);
+        localStorage.setItem("user", user);
+
+        // get most recent submission
+        var lastUser = localStorage.getItem("user");
+        userFirstNameSpan.textContent = lastUser.firstName;
+        userLastNameSpan.textContent = lastUser.lastName;
+        userEmailSpan.textContent = lastUser.email;
+        userPasswordSpan.textContent = lastUser.password;
     }
 });

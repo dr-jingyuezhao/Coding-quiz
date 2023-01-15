@@ -144,7 +144,7 @@ function showScores(event) {
 }
 
 // Add event listener to submit element
-var submitEl = document.querySelector("#submit");
-submitEl.addEventListener("click", showScores);
+var submitButton = document.querySelector("#submit");
+submitButton.addEventListener("click", showScores);
 
 
