@@ -5,6 +5,7 @@
 var startButton = document.querySelector("#start");
 var timeEl = document.querySelector("#time");
 var timeLeft = 90;
+var subtractTime = 10;
 var chosenAnswer = "";
 var numBlanks = 0;
 var correctCounter = 0;
@@ -28,7 +29,6 @@ startButton.addEventListener("click", startQuiz);
 // Sets timer
 function startTimer() {
   // var timeLeft = 90;
-  var subtractTime = 10;
   var timer = setInterval(function () {
     timeEl.textContent = timeLeft;
     timeLeft--;
@@ -91,7 +91,7 @@ function checkAnswer(event) {
     feedback.textContent = "Correct!";
   } else {
     feedback.textContent = "Wrong!";
-    timeLeft -= 10;
+    timeLeft -= subtractTime;
     if (timeLeft < 0) {
       timeLeft = 0;
     }
