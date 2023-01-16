@@ -333,3 +333,9 @@ function storeScores() {
     localStorage.setItem("score", JSON.stringify(score));
   }
   
+
+  choices.addEventListener("click", function(event) {
+    var element = event.target;
+  
+    // If that element is a button...
+    if (element.matches("button") === true) {
