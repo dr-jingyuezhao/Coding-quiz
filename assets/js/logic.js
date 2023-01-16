@@ -102,7 +102,7 @@ function checkAnswer(event) {
     localStorage.setItem("score", score.toString());
     lastUserScore = localStorage.getItem("score");
   }
-  console.log(finalScore);
+  console.log(lastUserScore);
   // questionIndex += 1;
   // showNextQuestion();
 }
