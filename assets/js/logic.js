@@ -28,22 +28,11 @@ startButton.addEventListener("click", startQuiz);
 // The setTimer function starts and stops the timer
 // Sets timer
 function startTimer() {
-  // var timeLeft = 90;
   var timer = setInterval(function () {
     timeEl.textContent = timeLeft;
     timeLeft--;
-    // if the answer is wrong, 
-    // when timeleft is more than the subtracted time, time is subtracted from the clock
-    if (isWrong && timeLeft > subtractTime) {// require update for checking answer is wrong
-      timeEl.textContent = timeLeft - subtractTime;
-    }
-    // when timeleft is less than the subtracted time, use `clearInterval()` to stop the timer
-    else if (isWrong && timeLeft <= subtractTime) {
-      // Clears interval and stops timer
-      clearInterval(timer);
-    }
     // Tests if time has run out
-    else if (timeLeft === 0) {
+    if (timeLeft === 0) {
       // Clears interval
       clearInterval(timer);
     }
@@ -72,9 +61,7 @@ function renderQuestion() {
     choices.appendChild(choiceButton);
 
     // WHEN I answer a question, add a click event and check if the answer is correct
-    choiceButton.addEventListener("click", function (event) {
-      checkAnswer(event);
-    });
+    choiceButton.addEventListener("click", checkAnswer);
   }
 
 }
@@ -90,7 +77,9 @@ function checkAnswer(event) {
     // If the answer is correct, display feedback to be Correct!
     feedback.textContent = "Correct!";
   } else {
+    // When I answer a question incorrectly
     feedback.textContent = "Wrong!";
+    // Then time is subtracted from the clock
     timeLeft -= subtractTime;
     if (timeLeft < 0) {
       timeLeft = 0;
@@ -98,8 +87,6 @@ function checkAnswer(event) {
   }
 }
 // THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
 // WHEN all questions are answered or the timer reaches 0
 // THEN the game is over
 

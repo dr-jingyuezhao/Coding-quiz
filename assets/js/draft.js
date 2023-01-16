@@ -296,3 +296,17 @@ submitButton.addEventListener("click", showScores);
   answerList.appendChild(answer2);
   answerList.appendChild(answer3);
   answerList.appendChild(answer4); //works until here
+
+
+
+      // if the answer is wrong, 
+    // when timeleft is more than the subtracted time, time is subtracted from the clock
+    if (isWrong && timeLeft > subtractTime) {// require update for checking answer is wrong
+        timeEl.textContent = timeLeft - subtractTime;
+      }
+      // when timeleft is less than the subtracted time, use `clearInterval()` to stop the timer
+      else if (isWrong && timeLeft <= subtractTime) {
+        // Clears interval and stops timer
+        clearInterval(timer);
+      }
+  
