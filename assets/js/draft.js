@@ -204,3 +204,30 @@ signUpButton.addEventListener("click", function (event) {
         userPasswordSpan.textContent = lastUser.password;
     }
 });
+
+
+
+// The init function is called when the page loads 
+function init() {
+    getCorrectCount();
+    getWrongCount();
+  }
+
+
+
+
+// The correctAnswer function is called when the answer is correct
+function correctAnswer() {
+    wordBlank.textContent = "YOU WON!!!🏆 ";
+    correctCounter++
+    startButton.disabled = false;
+    setWins()
+  }
+
+// The gameOver function is called when timer reaches 0
+function gameOver() {
+    wordBlank.textContent = "GAME OVER";
+    loseCounter++
+    startButton.disabled = false;
+    setLosses()
+  }

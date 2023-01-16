@@ -2,10 +2,8 @@
 // SO THAT I can gauge my progress compared to my peers
 
 // declare variables
-var timeElement = document.querySelector("#time");
 var startButton = document.querySelector("#start");
-var timeLeft;
-var timer;
+var timeEl = document.querySelector("#time");
 
 var chosenAnswer = "";
 var numBlanks = 0;
@@ -14,78 +12,48 @@ var wrongCounter = 0;
 var isCorrect = true;
 var isWrong = true;
 
-// // The init function is called when the page loads 
-// function init() {
-//     getCorrectCount();
-//     getWrongCount();
-//   }
-
-
-
-
-// // The correctAnswer function is called when the answer is correct
-// function correctAnswer() {
-//     wordBlank.textContent = "YOU WON!!!🏆 ";
-//     correctCounter++
-//     startButton.disabled = false;
-//     setWins()
-//   }
-
-// // The gameOver function is called when timer reaches 0
-// function gameOver() {
-//     wordBlank.textContent = "GAME OVER";
-//     loseCounter++
-//     startButton.disabled = false;
-//     setLosses()
-//   }
-
-
 
 // WHEN I click the start button
 // The startQuiz function is called when the start button is clicked
 function startQuiz() {
-  // isCorrect = false;
-  timeLeft = 90;
-  // Prevents start button from being clicked when round is in progress
-  startButton.disabled = true;
-  renderBlanks();
+  // THEN a timer starts 
   startTimer();
+  renderQuestion();
 }
 
 // Attach event listener to start button to call startQuiz function on click
 startButton.addEventListener("click", startQuiz);
 
-// THEN a timer starts 
-// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
+// The setTimer function starts and stops the timer
+// Sets timer
 function startTimer() {
-  // Sets timer
-  timer = setInterval(function () {
+  var timeLeft = 90;
+  var subtractTime = 10;
+  var timer = setInterval(function () {
+    timeEl.textContent = timeLeft;
     timeLeft--;
-    timeElement.textContent = timeLeft;
-    if (timeLeft > 0) {
-      // if the answer is wrong, time is subtracted from the clock
-      if (isWrong && timeLeft > 15) {
-        timeLeft = timeLeft - 15;
-      }
-      // if the answer is correct (the isCorrect condition is met)
-      else if (isCorrect) {
-        // Clears interval and stops timer
-        clearInterval(timer);
-        winGame();
-      }
+    // if the answer is wrong, 
+    // when timeleft is more than the subtracted time, time is subtracted from the clock
+    if (isWrong && timeLeft > subtractTime) {
+      timeEl.textContent = timeLeft - subtractTime;
+    }
+    // when timeleft is less than the subtracted time, use `clearInterval()` to stop the timer
+    else if (isWrong && timeLeft <= subtractTime) {
+      // Clears interval and stops timer
+      clearInterval(timer);
     }
     // Tests if time has run out
-    if (timeLeft === 0) {
+    else (timeLeft === 0) {
       // Clears interval
       clearInterval(timer);
-      loseGame();
     }
   }, 1000);
 }
 
 // and I am presented with a question
-// Creates blanks on screen
-function renderBlanks() {
+
+// Creates a question on screen
+function renderQuestion() {
   // Randomly picks word from words array
   chosenQuestion = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
   lettersInChosenWord = chosenWord.split("");
@@ -99,7 +67,7 @@ function renderBlanks() {
   wordBlank.textContent = blanksLetters.join(" ")
 }
 
-  // WHEN I answer a question
+// WHEN I answer a question
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
