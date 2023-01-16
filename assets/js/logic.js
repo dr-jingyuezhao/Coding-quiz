@@ -19,7 +19,7 @@ var choices = document.getElementById("choices");
 var feedback = document.getElementById("feedback");
 var endScreen = document.getElementById("end-screen");
 var finalScore = document.getElementById("final-score");
-var initialInput = document.getElementById("initials");
+var initialsInput = document.getElementById("initials");
 var submitButton = document.getElementById("submit");
 
 // WHEN I click the start button
@@ -112,4 +112,28 @@ function endQuiz() {
   questionsDiv.classList.add("hide");
   finalScore.textContent = score;
   console.log("Game over. Your final score is:", score);
+}
+
+submitButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  // validate the initials input
+  if (initialsInput.value === "") {
+    alert("Error!!! Please enter your initials, cannot leave it blank.");
+  }
+  else {
+    alert("Congratulations!!! Your score has been submitted.");
+    // create userScore object from submission
+    console.log(initialsInput.value, score);
+    // store new submission
+    storeScore();
+    window.location.href = "highscores.html";
+  }
+});
+
+function storeScore() {
+  // var initials = initialsInput.value;
+  var highScoreArray = JSON.parse(localStorage.getItem("highScore")) || [];
+  var storedUserScore = { initials: initialsInput.value.trim(), score: score };
+  highScoreArray.push(storedUserScore);
+  localStorage.setItem("highScore", JSON.stringify(highScoreArray));
 }
