@@ -18,6 +18,9 @@ var questionTitle = document.getElementById("question-title");
 var choices = document.getElementById("choices");
 var feedback = document.getElementById("feedback");
 var endScreen = document.getElementById("end-screen");
+var finalScore = document.getElementById("final-score");
+var initialInput = document.getElementById("initials");
+var submitButton = document.getElementById("submit");
 
 // WHEN I click the start button
 // The startQuiz function is called when the start button is clicked
@@ -41,7 +44,7 @@ function startTimer() {
     timeEl.textContent = timeLeft;
     timeLeft--;
     // Tests if time has run out
-    if (timeLeft === 0) {
+    if (timeLeft <= 0) {
       // Clears interval
       clearInterval(timer);
       endQuiz();
@@ -69,17 +72,7 @@ function renderQuestion() {
 
   }
 }
-
 }
-
-// function showNextQuestion() {
-//     // WHEN I answer a question, add a click event and check if the answer is correct
-//     var choice = document.querySelectorAll("button");
-//     choice.textContent = 
-//     choiceButton.addEventListener("click", checkAnswer);
-
-
-// }
 
 function checkAnswer(event) {
   event.preventDefault();
@@ -104,6 +97,7 @@ function checkAnswer(event) {
       return;
     }
   }
+  // render the next question
   questionIndex++;
   renderQuestion();
 

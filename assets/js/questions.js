@@ -15,10 +15,10 @@ var quizQuestions = [
     {
         question: "Which of the following keywords is used to define a variable in Javascript?",
         answers: [
-            "A. var",
-            "B. let",
-            "C. Both A and B",
-            "D. None of the above"
+            "1. var",
+            "2. let",
+            "3. Both A and B",
+            "4. None of the above"
         ],
         correctAnswerIndex: 2
     },
@@ -26,10 +26,10 @@ var quizQuestions = [
     {
         question: "What keyword is used to check whether a given property is valid or not?",
         answers: [
-            "A. in",
-            "B. is in",
-            "C. exists",
-            "D. lies"
+            "1. in",
+            "2. is in",
+            "3. exists",
+            "4. lies"
         ],
         correctAnswerIndex: 0
     },
@@ -37,10 +37,10 @@ var quizQuestions = [
     {
         question: "Which function is used to serialize an object into a JSON string in Javascript?",
         answers: [
-            "A. stringify()",
-            "B. parse()",
-            "C. convert()",
-            "D. None of the above"
+            "1. stringify()",
+            "2. parse()",
+            "3. convert()",
+            "4. None of the above"
         ],
         correctAnswerIndex: 0
     },
@@ -48,10 +48,10 @@ var quizQuestions = [
     {
         question: "How to stop an interval timer in Javascript?",
         answers: [
-            "A. clearTimer",
-            "B. clearInterval",
-            "C. intervalOver",
-            "D. None of the above"
+            "1. clearTimer",
+            "2. clearInterval",
+            "3. intervalOver",
+            "4. None of the above"
         ],
         correctAnswerIndex: 1
     },
@@ -59,10 +59,10 @@ var quizQuestions = [
     {
         question: "How do we write a comment in javascript?",
         answers: [
-            "A. /* */",
-            "B. #",
-            "C. $$",
-            "D. //"
+            "1. /* */",
+            "2. #",
+            "3. $$",
+            "4. //"
         ],
         correctAnswerIndex: 3
     }
