@@ -211,7 +211,7 @@ signUpButton.addEventListener("click", function (event) {
 function init() {
     getCorrectCount();
     getWrongCount();
-  }
+}
 
 
 
@@ -222,7 +222,7 @@ function correctAnswer() {
     correctCounter++
     startButton.disabled = false;
     setWins()
-  }
+}
 
 // The gameOver function is called when timer reaches 0
 function gameOver() {
@@ -230,10 +230,10 @@ function gameOver() {
     loseCounter++
     startButton.disabled = false;
     setLosses()
-  }
+}
 
 
-  var finalScore = 0;
+var finalScore = 0;
 var finalScoreEl = document.querySelector("#final-score");
 finalScoreEl.value = finalScore;
 
@@ -245,30 +245,30 @@ var submissionResponse = document.querySelector("#feedback");
 
 // Add keydown event to input name initials
 initialsEl.addEventListener('keydown', function (event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  // Access value of pressed key with key property
-  var key = event.key.toLowerCase();
-  var alphabetCharacters = "abcdefghijklmnopqrstuvwxyz".split(
-    ''
-  );
-  if (alphabetCharacters.includes(key)) {
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].textContent += event.key;
+    // Access value of pressed key with key property
+    var key = event.key.toLowerCase();
+    var alphabetCharacters = "abcdefghijklmnopqrstuvwxyz".split(
+        ''
+    );
+    if (alphabetCharacters.includes(key)) {
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].textContent += event.key;
+        }
     }
-  }
 });
 
 
 
 // Action to be performed on click store in named function
 function showScores(event) {
-  // Prevent default action
-  event.preventDefault();
-  window.location.href = "highscores.html";
-  console.log(event);
-  var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
-  submissionResponseEl.textContent = response;
+    // Prevent default action
+    event.preventDefault();
+    window.location.href = "highscores.html";
+    console.log(event);
+    var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
+    submissionResponseEl.textContent = response;
 }
 
 // Add event listener to submit element
@@ -276,37 +276,54 @@ var submitButton = document.querySelector("#submit");
 submitButton.addEventListener("click", showScores);
 
 
-  choices.innerHTML = q.answers;
+choices.innerHTML = q.answers;
 
-  // Create ordered list element of answers/choices 
-  var answerList = document.createElement("ol");
-  // Create listed answers
-  var answer1 = document.createElement("li");
-  var answer2 = document.createElement("li");
-  var answer3 = document.createElement("li");
-  var answer4 = document.createElement("li");
+// Create ordered list element of answers/choices 
+var answerList = document.createElement("ol");
+// Create listed answers
+var answer1 = document.createElement("li");
+var answer2 = document.createElement("li");
+var answer3 = document.createElement("li");
+var answer4 = document.createElement("li");
 
-  answer1.textContent = q.answers[0];
-  answer2.textContent = q.answers[1];
-  answer3.textContent = q.answers[2];
-  answer4.textContent = q.answers[3];
-  // Append ordered list and list items to ordered list element 
-  choices.appendChild(answerList);
-  answerList.appendChild(answer1);
-  answerList.appendChild(answer2);
-  answerList.appendChild(answer3);
-  answerList.appendChild(answer4); //works until here
+answer1.textContent = q.answers[0];
+answer2.textContent = q.answers[1];
+answer3.textContent = q.answers[2];
+answer4.textContent = q.answers[3];
+// Append ordered list and list items to ordered list element 
+choices.appendChild(answerList);
+answerList.appendChild(answer1);
+answerList.appendChild(answer2);
+answerList.appendChild(answer3);
+answerList.appendChild(answer4); //works until here
 
 
 
-      // if the answer is wrong, 
-    // when timeleft is more than the subtracted time, time is subtracted from the clock
-    if (isWrong && timeLeft > subtractTime) {// require update for checking answer is wrong
-        timeEl.textContent = timeLeft - subtractTime;
-      }
-      // when timeleft is less than the subtracted time, use `clearInterval()` to stop the timer
-      else if (isWrong && timeLeft <= subtractTime) {
-        // Clears interval and stops timer
-        clearInterval(timer);
-      }
-  
+// if the answer is wrong, 
+// when timeleft is more than the subtracted time, time is subtracted from the clock
+if (isWrong && timeLeft > subtractTime) {// require update for checking answer is wrong
+    timeEl.textContent = timeLeft - subtractTime;
+}
+// when timeleft is less than the subtracted time, use `clearInterval()` to stop the timer
+else if (isWrong && timeLeft <= subtractTime) {
+    // Clears interval and stops timer
+    clearInterval(timer);
+}
+
+// show questions on the screen
+
+function showQuestion() {
+    var questionsDiv = document.getElementById("questions");
+    questionsDiv.style.display = "block";
+    // Creates a question on screen
+    var questionTitle = document.getElementById("question-title");
+    questionTitle.textContent = q.question;
+    var choices = document.getElementById("choices");
+    // Create a new button for each choice (answer)
+    for (var i = 0; i < q.answers.length; i++) {
+        var choiceButton = document.createElement("button");
+        choiceButton.textContent = q.answers[i];
+        choiceButton.setAttribute("data-index", i);
+        choices.appendChild(choiceButton);
+    }
+}

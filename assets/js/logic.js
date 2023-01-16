@@ -85,11 +85,8 @@ function checkAnswer(event) {
       timeLeft = 0;
     }
   }
+  questionIndex += 1;
 }
 // THEN I am presented with another question
 // WHEN all questions are answered or the timer reaches 0
 // THEN the game is over
-
-
-
-
