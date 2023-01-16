@@ -27,7 +27,7 @@ var quizQuestions = [
         question: "What keyword is used to check whether a given property is valid or not?",
         answers: [
             "1. in",
-            "2. is in",
+            "2. is",
             "3. exists",
             "4. lies"
         ],

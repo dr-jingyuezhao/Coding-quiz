@@ -4,10 +4,10 @@
 // declare variables
 var startButton = document.querySelector("#start");
 var timeEl = document.querySelector("#time");
-var timeLeft = 20;
+var timer = 0;
+var timeLeft = 60;
 var subtractTime = 10;
 var questionIndex = 0;
-
 var score = 0;
 var winScore = 5;
 var lastUserScore;
@@ -30,7 +30,7 @@ function startQuiz() {
   // show questions on the screen
   questionsDiv.classList.remove("hide");
   // THEN a timer starts 
-  Timer();
+  startTimer();
   renderQuestion();
 }
 
@@ -39,15 +39,15 @@ startButton.addEventListener("click", startQuiz);
 
 // The setTimer function starts and stops the timer
 // Sets timer
-function Timer() {
-  var timer = setInterval(function () {
-    timeLeft--;
+function startTimer() {
+  timer = setInterval(function () {
     timeEl.textContent = timeLeft;
+    timeLeft--;
     // Tests if time has run out
-    if (timeLeft === 0 || questionIndex === quizQuestions.length) {
+    if (timeLeft <= 0) {
       // Clears interval
       clearInterval(timer);
-      // endQuiz();
+      endQuiz();
     }
   }, 1000);
 }
@@ -97,6 +97,8 @@ function checkAnswer(event) {
     renderQuestion();
   }
   else if (timeLeft === 0 || questionIndex === quizQuestions.length - 1) {
+    // Stop timer
+    clearInterval(timer);
     endQuiz();
     return;
   }
