@@ -8,7 +8,7 @@ var timeLeft = 90;
 var subtractTime = 10;
 var score = 0;
 var winScore = 5;
-var finalScore;
+var lastUserScore;
 var isCorrect = true;
 var isWrong = true;
 
@@ -61,6 +61,8 @@ function renderQuestion() {
     choices.appendChild(choiceButton);
     // WHEN I answer a question, add a click event and check if the answer is correct
     choiceButton.addEventListener("click", checkAnswer);
+    questionIndex += 1;
+
   }
 
 }
@@ -95,7 +97,13 @@ function checkAnswer(event) {
     }
   }
   console.log(score);
-  questionIndex += 1;
+  function storeScores() {
+    // Stringify and set "score" key in localStorage to score variable
+    localStorage.setItem("score", score.toString());
+    lastUserScore = localStorage.getItem("score");
+  }
+  console.log(finalScore);
+  // questionIndex += 1;
   // showNextQuestion();
 }
 // THEN I am presented with another question

@@ -327,3 +327,9 @@ function showQuestion() {
         choices.appendChild(choiceButton);
     }
 }
+
+function storeScores() {
+    // Stringify and set "score" key in localStorage to score variable
+    localStorage.setItem("score", JSON.stringify(score));
+  }
+  
