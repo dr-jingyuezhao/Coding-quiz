@@ -82,7 +82,7 @@ function checkAnswer(event) {
     feedback.textContent = "Correct!";
     score = score + winScore;
     console.log("Correct answer.");
-    console.log(score);
+    console.log("Your score is: ", score);
   } else {
     // When I answer a question incorrectly
     feedback.textContent = "Wrong!";
@@ -96,29 +96,20 @@ function checkAnswer(event) {
     questionIndex++;
     renderQuestion();
   }
+  // WHEN all questions are answered or the timer reaches 0
+  // THEN the game is over
   else if (timeLeft === 0 || questionIndex === quizQuestions.length - 1) {
     // Stop timer
     clearInterval(timer);
     endQuiz();
     return;
   }
-
-
-  // function storeScores() {
-  //   // Stringify and set "score" key in localStorage to score variable
-  //   localStorage.setItem("score", score.toString());
-  //   lastUserScore = localStorage.getItem("score");
-  // }
-  // console.log(lastUserScore);
-  // // questionIndex += 1;
-  // // showNextQuestion();
 }
-// THEN I am presented with another question // this doesn't work
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
+
 function endQuiz() {
-  console.log("Ending quiz")
   timeEl.textContent = 0;
   endScreen.classList.remove("hide");
   questionsDiv.classList.add("hide");
+  finalScore.textContent = score;
+  console.log("Game over. Your final score is:", score);
 }

@@ -346,3 +346,17 @@ function storeScores() {
     //   endQuiz();
     //   return;
     // }
+
+    function startTimer() {
+        timer = setInterval(function () {
+          timeEl.textContent = timeLeft;
+          timeLeft--;
+        //   // Tests if time has run out
+        //   if (timeLeft <= 0) {
+        //     // Clears interval
+        //     clearInterval(timer);
+        //     endQuiz();
+        //   }
+        }, 1000);
+      }
+      
