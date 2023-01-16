@@ -4,7 +4,7 @@
 // declare variables
 var startButton = document.querySelector("#start");
 var timeEl = document.querySelector("#time");
-var timeLeft = 90;
+var timeLeft = 60;
 var subtractTime = 10;
 var score = 0;
 var winScore = 5;
