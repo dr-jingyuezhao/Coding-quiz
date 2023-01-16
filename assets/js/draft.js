@@ -339,3 +339,4 @@ function storeScores() {
   
     // If that element is a button...
     if (element.matches("button") === true) {
+        var answer = element.getAttribute("data-index");

@@ -57,23 +57,57 @@ function renderQuestion() {
     choiceButton.textContent = q.answers[i];
     choiceButton.setAttribute("data-index", i);
     choices.appendChild(choiceButton);
-    // WHEN I answer a question, add a click event and check if the answer is correct
-    choiceButton.addEventListener("click", checkAnswer);
     questionIndex += 1;
-
+    
   }
-
+  
 }
 
 // function showNextQuestion() {
-//     // WHEN I answer a question, add a click event and check if the answer is correct
-//     var choice = document.querySelectorAll("button");
-//     choice.textContent = 
-//     choiceButton.addEventListener("click", checkAnswer);
-
-
-// }
-
+  //     // WHEN I answer a question, add a click event and check if the answer is correct
+  //     var choice = document.querySelectorAll("button");
+  //     choice.textContent = 
+  //     choiceButton.addEventListener("click", checkAnswer);
+  
+  
+  // }
+  
+  // WHEN I answer a question, add a click event and check if the answer is correct
+  choices.addEventListener("click", function(event) {
+    event.preventDefault();
+    var element = event.target;
+    if (element.matches("button") === true) {
+      var answer = element.getAttribute("data-index");
+      var correctAnswer;
+      feedback.style.display = "block";
+      if (answer == q.correctAnswerIndex) {
+        correctAnswer = answer;
+        // If the answer is correct, display feedback to be Correct!
+        feedback.textContent = "Correct!";
+        score = score + winScore;
+      } else {
+        // When I answer a question incorrectly
+        feedback.textContent = "Wrong!";
+        score += 0;
+        // Then time is subtracted from the clock
+        timeLeft -= subtractTime;
+        if (timeLeft < 0) {
+          timeLeft = 0;
+        }
+      }
+      console.log(score);
+      function storeScores() {
+        // Stringify and set "score" key in localStorage to score variable
+        localStorage.setItem("score", score.toString());
+        lastUserScore = localStorage.getItem("score");
+      }
+      console.log(lastUserScore);
+      // questionIndex += 1;
+      // showNextQuestion();
+    }
+    
+    }
+  });
 function checkAnswer(event) {
   event.preventDefault();
   var answer = event.currentTarget.dataset.index;
