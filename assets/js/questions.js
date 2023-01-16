@@ -9,7 +9,7 @@ var quizQuestions = [
             "3. Alerts",
             "4. Numbers"
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 2
     },
 // question 2
     {
