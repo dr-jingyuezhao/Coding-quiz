@@ -2,12 +2,12 @@
 var quizQuestions = [
 // question 1
     {
-        question: "What is JavaScript?",
+        question: "Commonly used data types DO NOT include:",
         answers: [
-            "A. JavaScript is an assembly language used to make the website interactive.",
-            "B. JavaScript is a scripting language used to make the website interactive.",
-            "C. JavaScript is a compiled language used to make the website interactive.",
-            "D. None of the above"
+            "Strings",
+            "Booleans",
+            "Alerts",
+            "Numbers"
         ],
         correctAnswerIndex: 1
     },

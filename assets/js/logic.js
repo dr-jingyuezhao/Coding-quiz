@@ -34,7 +34,7 @@ function startTimer() {
     timeLeft--;
     // if the answer is wrong, 
     // when timeleft is more than the subtracted time, time is subtracted from the clock
-    if (isWrong && timeLeft > subtractTime) {
+    if (isWrong && timeLeft > subtractTime) {// require update for checking answer is wrong
       timeEl.textContent = timeLeft - subtractTime;
     }
     // when timeleft is less than the subtracted time, use `clearInterval()` to stop the timer
@@ -52,24 +52,40 @@ function startTimer() {
 
 // and I am presented with a question
 function renderQuestion() {
-// hide the start screen with rules
-var startScreen = document.getElementById("start-screen");
-startScreen.style.display = "none"; 
-// show questions on the screen
-var questionsDiv = document.getElementById("questions");
-questionsDiv.style.display = "block";
-// // Creates a question on screen
-//   // Randomly picks word from words array
-//   chosenQuestion = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
-//   lettersInChosenWord = chosenWord.split("");
-//   numBlanks = lettersInChosenWord.length;
-//   blanksLetters = []
-//   // Uses loop to push blanks to blankLetters array
-//   for (var i = 0; i < numBlanks; i++) {
-//     blanksLetters.push("_");
-//   }
-//   // Converts blankLetters array into a string and renders it on the screen
-//   wordBlank.textContent = blanksLetters.join(" ")
+  // hide the start screen with rules
+  var startScreen = document.getElementById("start-screen");
+  startScreen.style.display = "none";
+  // show questions on the screen
+  var questionsDiv = document.getElementById("questions");
+  questionsDiv.style.display = "block";
+  // Creates a question on screen
+  var questionIndex = 0;
+  var q = quizQuestions[questionIndex];
+  var questionTitle = document.getElementById("question-title");
+  questionTitle.textContent = q.question;
+  var choices = document.getElementById("choices");
+  // choices.innerHTML = q.answers;
+  // Create ordered list element of answers/choices 
+  var answerList = document.createElement("ol");
+  // Create listed answers
+  var answer1 = document.createElement("li");
+  var answer2 = document.createElement("li");
+  var answer3 = document.createElement("li");
+  var answer4 = document.createElement("li");
+
+  answer1.textContent = q.answers[0];
+  answer2.textContent = q.answers[1];
+  answer3.textContent = q.answers[2];
+  answer4.textContent = q.answers[3];
+  // Append ordered list and list items to ordered list element 
+  choices.appendChild(answerList);
+  answerList.appendChild(answer1);
+  answerList.appendChild(answer2);
+  answerList.appendChild(answer3);
+  answerList.appendChild(answer4); //works until here
+
+
+
 }
 
 // WHEN I answer a question
