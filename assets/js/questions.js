@@ -10,7 +10,7 @@ var quizQuestions = [
             "D. None of the above"
         ],
         correctAnswerIndex: 1
-    }
+    },
 // question 2
     {
         question: "Which of the following keywords is used to define a variable in Javascript?",
@@ -21,7 +21,7 @@ var quizQuestions = [
             "D. None of the above"
         ],
         correctAnswerIndex: 2
-    }
+    },
 // question 3
     {
         question: "What keyword is used to check whether a given property is valid or not?",
@@ -32,7 +32,7 @@ var quizQuestions = [
             "D. lies"
         ],
         correctAnswerIndex: 0
-    }
+    },
 // question 4
     {
         question: "Which function is used to serialize an object into a JSON string in Javascript?",
@@ -43,7 +43,7 @@ var quizQuestions = [
             "D. None of the above"
         ],
         correctAnswerIndex: 0
-    }
+    },
 // question 5
     {
         question: "How to stop an interval timer in Javascript?",
@@ -54,7 +54,7 @@ var quizQuestions = [
             "D. None of the above"
         ],
         correctAnswerIndex: 1
-    }
+    },
 // question 6
     {
         question: "How do we write a comment in javascript?",

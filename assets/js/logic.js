@@ -43,7 +43,7 @@ function startTimer() {
       clearInterval(timer);
     }
     // Tests if time has run out
-    else (timeLeft === 0) {
+    else if (timeLeft === 0) {
       // Clears interval
       clearInterval(timer);
     }
@@ -51,20 +51,25 @@ function startTimer() {
 }
 
 // and I am presented with a question
-
-// Creates a question on screen
 function renderQuestion() {
-  // Randomly picks word from words array
-  chosenQuestion = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
-  lettersInChosenWord = chosenWord.split("");
-  numBlanks = lettersInChosenWord.length;
-  blanksLetters = []
-  // Uses loop to push blanks to blankLetters array
-  for (var i = 0; i < numBlanks; i++) {
-    blanksLetters.push("_");
-  }
-  // Converts blankLetters array into a string and renders it on the screen
-  wordBlank.textContent = blanksLetters.join(" ")
+// hide the start screen with rules
+var startScreen = document.getElementById("start-screen");
+startScreen.style.display = "none"; 
+// show questions on the screen
+var questionsDiv = document.getElementById("questions");
+questionsDiv.style.display = "block";
+// // Creates a question on screen
+//   // Randomly picks word from words array
+//   chosenQuestion = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
+//   lettersInChosenWord = chosenWord.split("");
+//   numBlanks = lettersInChosenWord.length;
+//   blanksLetters = []
+//   // Uses loop to push blanks to blankLetters array
+//   for (var i = 0; i < numBlanks; i++) {
+//     blanksLetters.push("_");
+//   }
+//   // Converts blankLetters array into a string and renders it on the screen
+//   wordBlank.textContent = blanksLetters.join(" ")
 }
 
 // WHEN I answer a question
@@ -73,46 +78,8 @@ function renderQuestion() {
 // THEN time is subtracted from the clock
 // WHEN all questions are answered or the timer reaches 0
 // THEN the game is over
-var finalScore = 0;
-var finalScoreEl = document.querySelector("#final-score");
-finalScoreEl.value = finalScore;
-
-// WHEN the game is over
-// THEN I can save my initials and score
-var initialsEl = document.querySelector("#initials");
-var submitEl = document.querySelector("#submit");
-var submissionResponse = document.querySelector("#feedback");
-
-// Add keydown event to input name initials
-initialsEl.addEventListener('keydown', function (event) {
-  event.preventDefault();
-
-  // Access value of pressed key with key property
-  var key = event.key.toLowerCase();
-  var alphabetCharacters = "abcdefghijklmnopqrstuvwxyz".split(
-    ''
-  );
-  if (alphabetCharacters.includes(key)) {
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].textContent += event.key;
-    }
-  }
-});
 
 
 
-// Action to be performed on click store in named function
-function showScores(event) {
-  // Prevent default action
-  event.preventDefault();
-  window.location.href = "highscores.html";
-  console.log(event);
-  var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
-  submissionResponseEl.textContent = response;
-}
-
-// Add event listener to submit element
-var submitButton = document.querySelector("#submit");
-submitButton.addEventListener("click", showScores);
 
 

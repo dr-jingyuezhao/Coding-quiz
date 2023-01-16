@@ -231,3 +231,46 @@ function gameOver() {
     startButton.disabled = false;
     setLosses()
   }
+
+
+  var finalScore = 0;
+var finalScoreEl = document.querySelector("#final-score");
+finalScoreEl.value = finalScore;
+
+// WHEN the game is over
+// THEN I can save my initials and score
+var initialsEl = document.querySelector("#initials");
+var submitEl = document.querySelector("#submit");
+var submissionResponse = document.querySelector("#feedback");
+
+// Add keydown event to input name initials
+initialsEl.addEventListener('keydown', function (event) {
+  event.preventDefault();
+
+  // Access value of pressed key with key property
+  var key = event.key.toLowerCase();
+  var alphabetCharacters = "abcdefghijklmnopqrstuvwxyz".split(
+    ''
+  );
+  if (alphabetCharacters.includes(key)) {
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].textContent += event.key;
+    }
+  }
+});
+
+
+
+// Action to be performed on click store in named function
+function showScores(event) {
+  // Prevent default action
+  event.preventDefault();
+  window.location.href = "highscores.html";
+  console.log(event);
+  var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
+  submissionResponseEl.textContent = response;
+}
+
+// Add event listener to submit element
+var submitButton = document.querySelector("#submit");
+submitButton.addEventListener("click", showScores);
