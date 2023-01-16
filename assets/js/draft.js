@@ -340,3 +340,9 @@ function storeScores() {
     // If that element is a button...
     if (element.matches("button") === true) {
         var answer = element.getAttribute("data-index");
+
+            // if (timeLeft <= 0 || questionIndex === quizQuestions.length - 1) {
+    //   timeLeft = 0;
+    //   endQuiz();
+    //   return;
+    // }

@@ -4,7 +4,7 @@
 // declare variables
 var startButton = document.querySelector("#start");
 var timeEl = document.querySelector("#time");
-var timeLeft = 10;
+var timeLeft = 30;
 var subtractTime = 10;
 var questionIndex = 0;
 
@@ -44,64 +44,64 @@ function startTimer() {
     timeEl.textContent = timeLeft;
     timeLeft--;
     // Tests if time has run out
-    if (timeLeft <= 0) {
+    if (timeLeft <= 0 || questionIndex === quizQuestions.length) {
       // Clears interval
-      clearInterval(timer);
       endQuiz();
+      clearInterval(timer);
     }
   }, 1000);
 }
 
-var q = quizQuestions[questionIndex];
 // and I am presented with a question
 function renderQuestion() {
   // Creates a question on screen
   var q = quizQuestions[questionIndex];
-  if (timeLeft > 0 || questionIndex <= quizQuestions.length - 1) {
-  questionTitle.textContent = q.question;
-  choices.textContent = "";
+  if (timeLeft > 0 || questionIndex < quizQuestions.length) {
+    questionTitle.textContent = q.question;
+    choices.textContent = "";
 
-  // Create a new button for each choice (answer)
-  for (var i = 0; i < q.answers.length; i++) {
-    var choiceButton = document.createElement("button");
-    choiceButton.textContent = q.answers[i];
-    choiceButton.setAttribute("data-index", i);
-    choices.appendChild(choiceButton);
-    // WHEN I answer a question, add a click event and check if the answer is correct
-    choiceButton.addEventListener("click", checkAnswer);
-
+    // Create a new button for each choice (answer)
+    for (var i = 0; i < q.answers.length; i++) {
+      var choiceButton = document.createElement("button");
+      choiceButton.textContent = q.answers[i];
+      choiceButton.setAttribute("data-index", i);
+      choices.appendChild(choiceButton);
+      // WHEN I answer a question, add a click event and check if the answer is correct
+      choiceButton.addEventListener("click", checkAnswer);
+    }
   }
-}
 }
 
 function checkAnswer(event) {
   event.preventDefault();
   var q = quizQuestions[questionIndex];
   var answer = event.currentTarget.dataset.index;
-  var correctAnswer;
   feedback.style.display = "block";
   if (answer == q.correctAnswerIndex) {
-    correctAnswer = answer;
     // If the answer is correct, display feedback to be Correct!
     feedback.textContent = "Correct!";
     score = score + winScore;
+    console.log("Correct answer.");
+    console.log(score);
   } else {
     // When I answer a question incorrectly
     feedback.textContent = "Wrong!";
+    console.log("Incorrect answer.");
     score += 0;
     // Then time is subtracted from the clock
     timeLeft -= subtractTime;
-    if (timeLeft <= 0 || questionIndex === quizQuestions.length - 1) {
-      timeLeft = 0;
-      endQuiz();
-      return;
-    }
   }
   // render the next question
-  questionIndex++;
-  renderQuestion();
+  if (timeLeft > 0 && questionIndex < quizQuestions.length - 1) {
+    questionIndex++;
+    renderQuestion();
+  }
+  else if (timeLeft === 0 || questionIndex === quizQuestions.length - 1) {
+    endQuiz();
+    return;
+  }
 
-  console.log(score);
+
   // function storeScores() {
   //   // Stringify and set "score" key in localStorage to score variable
   //   localStorage.setItem("score", score.toString());
@@ -116,7 +116,7 @@ function checkAnswer(event) {
 // THEN the game is over
 function endQuiz() {
   console.log("Ending quiz")
+  timeEl.textContent = 0;
   endScreen.classList.remove("hide");
   questionsDiv.classList.add("hide");
-  timeLeft = 0;
 }
