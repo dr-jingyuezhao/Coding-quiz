@@ -64,37 +64,24 @@ function renderQuestion() {
   var questionTitle = document.getElementById("question-title");
   questionTitle.textContent = q.question;
   var choices = document.getElementById("choices");
-  // choices.innerHTML = q.answers;
-  // Create ordered list element of answers/choices 
-  var answerList = document.createElement("ol");
-  // Create listed answers
-  var answer1 = document.createElement("li");
-  var answer2 = document.createElement("li");
-  var answer3 = document.createElement("li");
-  var answer4 = document.createElement("li");
-
-  answer1.textContent = q.answers[0];
-  answer2.textContent = q.answers[1];
-  answer3.textContent = q.answers[2];
-  answer4.textContent = q.answers[3];
-  // Append ordered list and list items to ordered list element 
-  choices.appendChild(answerList);
-  answerList.appendChild(answer1);
-  answerList.appendChild(answer2);
-  answerList.appendChild(answer3);
-  answerList.appendChild(answer4); //works until here
-
-
-
+  // Create a new button for each choice (answer)
+  for (var i = 0; i < q.answers.length; i++) {
+    var choiceButton = document.createElement("button");
+    choiceButton.textContent = q.answers[i];
+    choiceButton.setAttribute("data-index", i);
+    choices.appendChild(choiceButton);
+  }
 }
 
-// WHEN I answer a question
+// WHEN I answer a question, add a click event and check if the answer is correct
+
+
+
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
 // WHEN all questions are answered or the timer reaches 0
 // THEN the game is over
-
 
 
 

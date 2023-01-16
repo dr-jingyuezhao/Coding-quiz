@@ -4,10 +4,10 @@ var quizQuestions = [
     {
         question: "Commonly used data types DO NOT include:",
         answers: [
-            "Strings",
-            "Booleans",
-            "Alerts",
-            "Numbers"
+            "1. Strings",
+            "2. Booleans",
+            "3. Alerts",
+            "4. Numbers"
         ],
         correctAnswerIndex: 1
     },

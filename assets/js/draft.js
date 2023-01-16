@@ -274,3 +274,25 @@ function showScores(event) {
 // Add event listener to submit element
 var submitButton = document.querySelector("#submit");
 submitButton.addEventListener("click", showScores);
+
+
+  choices.innerHTML = q.answers;
+
+  // Create ordered list element of answers/choices 
+  var answerList = document.createElement("ol");
+  // Create listed answers
+  var answer1 = document.createElement("li");
+  var answer2 = document.createElement("li");
+  var answer3 = document.createElement("li");
+  var answer4 = document.createElement("li");
+
+  answer1.textContent = q.answers[0];
+  answer2.textContent = q.answers[1];
+  answer3.textContent = q.answers[2];
+  answer4.textContent = q.answers[3];
+  // Append ordered list and list items to ordered list element 
+  choices.appendChild(answerList);
+  answerList.appendChild(answer1);
+  answerList.appendChild(answer2);
+  answerList.appendChild(answer3);
+  answerList.appendChild(answer4); //works until here
