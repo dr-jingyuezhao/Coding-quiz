@@ -75,11 +75,19 @@ function checkAnswer(event) {
     // If the answer is correct, display feedback to be Correct!
     feedback.textContent = "Correct!";
     console.log("Correct answer.");
+    // play the audio for correct answer
+    var audio = new Audio("./assets/sfx/correct.wav");
+    audio.play();
+    // add winScore when answer is correct
     score = score + winScore;
   } else {
     // When I answer a question incorrectly
     feedback.textContent = "Wrong!";
     console.log("Incorrect answer.");
+    // play the audio for incorrect answer
+    var audio = new Audio("./assets/sfx/incorrect.wav");
+    audio.play();
+    // score remains the same when answer is incorrect
     score += 0;
     // Then time is subtracted from the clock
     timeLeft -= subtractTime;
