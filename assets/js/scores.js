@@ -1,5 +1,5 @@
 var scoreList = document.getElementById("highscores");
-var highScoreArray = JSON.parse(localStorage.getItem("highScore"));
+var highScoreArray = JSON.parse(localStorage.getItem("highScore")) || [];
 var clearButton = document.getElementById("clear");
 
 // Create ordered list item using create-append
