@@ -10,7 +10,6 @@ var subtractTime = 10;
 var questionIndex = 0;
 var score = 0;
 var winScore = 5;
-var lastUserScore;
 
 var startScreen = document.getElementById("start-screen");
 var questionsDiv = document.getElementById("questions");
@@ -114,6 +113,7 @@ function endQuiz() {
   console.log("Game over. Your final score is:", score);
 }
 
+// WHEN the game is over, save initials and score in local storage
 submitButton.addEventListener("click", function (event) {
   event.preventDefault();
   // validate the initials input
@@ -122,7 +122,6 @@ submitButton.addEventListener("click", function (event) {
   }
   else {
     alert("Congratulations!!! Your score has been submitted.");
-    // create userScore object from submission
     console.log(initialsInput.value, score);
     // store new submission
     storeScore();
@@ -131,7 +130,6 @@ submitButton.addEventListener("click", function (event) {
 });
 
 function storeScore() {
-  // var initials = initialsInput.value;
   var highScoreArray = JSON.parse(localStorage.getItem("highScore")) || [];
   var storedUserScore = { initials: initialsInput.value.trim(), score: score };
   highScoreArray.push(storedUserScore);
