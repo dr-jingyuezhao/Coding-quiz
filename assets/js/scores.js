@@ -16,4 +16,6 @@ clearButton.addEventListener("click", function (event) {
     event.preventDefault();
     // when clicking the button, remove the specified local storage item - highScore
     localStorage.removeItem("highScore");
+    // also clear the scoreList displayed on the screen
+    scoreList.classList.add("hide");
 });
